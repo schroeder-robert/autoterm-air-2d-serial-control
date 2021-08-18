@@ -208,8 +208,8 @@ __Response payload description__
 
 |Byte|Hex|Decimal|Description|
 |-:|-:|-:|:-|
-|0|`00`|`0`|status code: __0__.1|
-|1|`01`|`1`|status code: 0.__1__|
+|0|`00`|`0`|status code: __0__.1, see status codes|
+|1|`01`|`1`|status code: 0.__1__, see status codes|
 |2|`00`|`0`|?|
 |3|`13`|`19`|internal temp sensor (temp > 127 ? temp - 255 : temp)|
 |4|`7F`|`127`|external temp sensor (temp > 127 ? temp - 255 : temp)|
@@ -227,6 +227,24 @@ __Response payload description__
 |16|`00`|`0`|?|
 |17|`00`|`0`|?|
 |18|`64`|`100`|?|
+
+&nbsp;
+
+__Status codes__
+
+|Code|Description|
+|:-|:-|
+|0.1|standby|
+|1.0|cooling flame sensor|
+|1.1|ventilation|
+|2.1|heating glow plug|
+|2.2|ignition 1|
+|2.3|ignition 2|
+|2.4|heating combustion chamber|
+|3.0|heating|
+|3.35|only fan|
+|3.4|cooling down|
+|4.0|shutting down|
 
 &nbsp;
 

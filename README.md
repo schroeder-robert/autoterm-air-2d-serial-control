@@ -2,7 +2,11 @@
 
 This documentation is a result of a reverse engineering process and is not complete nor immaculate. Feel free to add your or correct these findings.
 
+&nbsp;
+
 ## Serial connection
+
+You can use a simple USB to serial adapter to connect to the heater. Pinout of the connector comming soon.
 
 - Baud rate: __9600__
 - Data bits: __8__

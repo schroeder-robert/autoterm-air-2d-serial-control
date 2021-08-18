@@ -35,6 +35,38 @@ This is a message example:
 
 &nbsp;
 
+### Checksum calculation
+
+This function (JS) takes an array of bytes (header + payload) and adds two bytes as checksum to the end.
+
+```javascript
+
+    function (byteArray) {
+        var crc = 0xFFFF
+
+        for (var pos = 0; pos < byteArray.length; pos++) {
+            crc = crc ^ byteArray[pos]
+
+            for (var i = 0; i < 8; i++) {
+                let odd = crc & 0x0001
+                
+                crc >>= 1
+
+                if (odd) {
+                    crc ^= 0xA001
+                }
+            }
+        }
+
+        byteArray.push((crc >> 8) & 0xff)
+        byteArray.push(crc & 0xff)
+
+        return byteArray
+    }
+```
+
+&nbsp;
+
 ## Request/Response message types
 
 These messages can be sent to the heater to get a response.

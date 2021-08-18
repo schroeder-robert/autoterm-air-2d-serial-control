@@ -23,30 +23,30 @@ This is a message example:
 |1|`04`|`4`|3 = request, 4 = response|
 |2|`13`|`19`|payload length|
 |3|`00`|`0`|always "0"|
-|4|`0F`|`15`|type: |
+|4|`0F`|`15`|type: see message types|
 |5+|`...`|`...`|payload|
 |-2 to -1|`D9 49`||checksum|
 
 &nbsp;
 
-## Control communication
+## Message types
 
 These messages can be sent to the heater to get a response.
 
 &nbsp;
 
-### Get status
+### Get status - `0F`
 
-||Base|Payload|Checksum|Note|
+||Header|Payload|Checksum|Note|
 |-|-|-|-|-|
 |▶|`AA 03 00 00 0F`||`58 7C`||
 |◀|`AA 04 13 00 0F`|`00 01 00 13 7F 00 86 01 24 00 00 00 00 00 00 00 00 00 64`|`D9 49`||
 
 &nbsp;
 
-### Get settings
+### Get settings - `02`
 
-||Base|Payload|Checksum|Note|
+||Header|Payload|Checksum|Note|
 |-|-|-|-|-|
 |▶|`AA 03 00 00 02`||`9D BD`||
 |◀|`AA 04 06 00 02`|`01 00 04 10 00 08`|`69 6C`||

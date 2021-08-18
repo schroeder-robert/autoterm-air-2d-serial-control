@@ -1,5 +1,7 @@
 # Control Autoterm Air 2D
 
+This documentation is a result of a reverse engineering process and is not complete nor immaculate. Feel free to add your or correct these findings.
+
 ## Serial connection
 
 - Baud rate: __9600__
@@ -39,8 +41,18 @@ These messages can be sent to the heater to get a response.
 
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|
-|▶|`AA 03 02 00 01`|`00 28`|`27 39`|
-|◀|`AA 04 00 00 01`|`...`|`...`|
+|▶|`AA 03 02 00 01`|`01 00 04 10 00 08`|`B3 EE`|
+|◀|`AA 04 06 00 01`|`01 00 04 10 00 08`|`69 5F`|
+
+&nbsp;
+
+__Request/Response payload description__
+
+See "Get/set settings"
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -68,12 +80,20 @@ __Request/Response payload description__
 
 &nbsp;
 
-### Turn off - `03`
+---
+
+&nbsp;
+
+### Turn heater/fan off - `03`
 
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|
 |▶|`AA 03 00 00 03`||`5D 7C`|
-|◀|`AA 04 00 00 03`|`...`|`...`|
+|◀|`AA 04 00 00 03`||`29 7D`|
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -82,7 +102,23 @@ __Request/Response payload description__
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|
 |▶|`AA 03 00 00 06`||`5E BC`|
-|◀|`AA 04 00 00 06`|`...`|`...`|
+|◀|`AA 04 05 00 06`|`02 01 03 04 03`|`C1 6E`|
+
+&nbsp;
+
+__Response payload description__
+
+|Byte|Hex|Decimal|Description|
+|-:|-:|-:|:-|
+|0|`02`|`2`|version: __2__.1.3.4|
+|1|`01`|`1`|version: 2.__1__.3.4|
+|2|`03`|`3`|version: 2.1.__3__.4|
+|3|`04`|`4`|version: 2.1.3.__4__|
+|4|`03`|`3`|blackbox version|
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -95,7 +131,15 @@ __Request/Response payload description__
 
 &nbsp;
 
+---
+
+&nbsp;
+
 ### Set fan speed - `08`
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -103,7 +147,15 @@ __Request/Response payload description__
 
 &nbsp;
 
+---
+
+&nbsp;
+
 ### Unlock - `0D`
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -116,12 +168,54 @@ __Request/Response payload description__
 
 &nbsp;
 
+__Response payload description__
+
+|Byte|Hex|Decimal|Description|
+|-:|-:|-:|:-|
+|0|`00`|`0`|status code: __0__.1|
+|1|`01`|`1`|status code: 0.__1__|
+|2|`00`|`0`|?|
+|3|`13`|`19`|internal temp sensor (temp > 127 ? temp - 255 : temp)|
+|4|`7F`|`127`|external temp sensor (temp > 127 ? temp - 255 : temp)|
+|5|`00`|`0`|?|
+|6|`86`|`134`|voltage (volt / 10)|
+|7|`01`|`1`|?|
+|8|`24`|`36`|heater temp sensor (temp - 15)|
+|9|`00`|`0`|?|
+|10|`00`|`0`|?|
+|11|`00`|`0`|fan rpm set (rpm * 60)|
+|12|`00`|`0`|fan rpm actual (rpm * 60)|
+|13|`00`|`0`|?|
+|14|`00`|`0`|frequency fuel pump (freq / 100)|
+|15|`00`|`0`|?|
+|16|`00`|`0`|?|
+|17|`00`|`0`|?|
+|18|`64`|`100`|?|
+
+&nbsp;
+
+---
+
+&nbsp;
+
 ### Set temperature - `11`
 
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|
 |▶|`AA 03 01 00 11`|`14`|`B2 51`|
-|◀|`AA 03 00 00 11`|`...`|`...`|
+|◀|`AA 04 01 00 11`|`14`|`72 E4`|
+
+&nbsp;
+
+__Request/Response payload description__
+
+|Byte|Hex|Decimal|Description|
+|-:|-:|-:|:-|
+|0|`14`|`20`|panel temp sensor|
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -129,11 +223,23 @@ __Request/Response payload description__
 
 &nbsp;
 
+---
+
+&nbsp;
+
 ### Start - `1C`
 
 &nbsp;
 
+---
+
+&nbsp;
+
 ### Unknown - `1C`
+
+&nbsp;
+
+---
 
 &nbsp;
 
@@ -142,7 +248,20 @@ __Request/Response payload description__
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|
 |▶|`AA 03 04 00 23`|`FF FF 08 FF`|`E1 0B`|
-|◀|`AA 04 00 00 23`|`...`|`...`|
+|◀|`AA 04 04 00 23`|`FF FF 08 43`|`B6 4B`|
+
+&nbsp;
+
+__Request/Response payload description__
+
+|Byte|Hex|Decimal|Description|
+|-:|-:|-:|:-|
+|0|`FF`|`255`|?|
+|1|`FF`|`255`|?|
+|2|`08`|`8`|level: 0-9|
+|3|`FF`|`255`|?|
+
+&nbsp;
 
 &nbsp;
 

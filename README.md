@@ -62,7 +62,7 @@ See "Get/set settings"
 
 ### Get/set settings - `02`
 
-Leave request payload empty to get settings, add bytes from paylod description to set settings.
+Leave request payload empty to get settings, add bytes from payload description to set settings.
 
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|

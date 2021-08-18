@@ -1,4 +1,4 @@
-# Control Autoterm Air 2D
+# Autoterm Air 2D Control
 
 This documentation is a result of a reverse engineering process and is not complete nor immaculate. Feel free to add your or correct these findings.
 

@@ -77,7 +77,7 @@ These messages can be sent to the heater to get a response.
 
 ||Header|Payload|Checksum|
 |-|:-|:-|:-|
-|▶|`AA 03 02 00 01`|`01 00 04 10 00 08`|`B3 EE`|
+|▶|`AA 03 06 00 01`|`01 00 04 10 00 08`|`B3 EE`|
 |◀|`AA 04 06 00 01`|`01 00 04 10 00 08`|`69 5F`|
 
 &nbsp;
